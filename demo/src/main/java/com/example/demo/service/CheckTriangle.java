@@ -1,5 +1,8 @@
 package com.example.demo.service;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CheckTriangle {
     //假设a,b,c均小于800
     public String checkTriangle(int a, int b, int c){

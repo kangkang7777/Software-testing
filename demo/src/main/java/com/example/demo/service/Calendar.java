@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 public class Calendar {
     public String getNextDate(int year, int month, int day){
         if (year < 1900 || year > 2500){
-            return "非法年份";
+            return "year不在取值范围内";
         }else if (month < 1 || month > 12){
-            return "非法月份";
+            return "month不在取值范围内";
         }else if (day < 1 || day > 31){
-            return "非法日期";
+            return "day不在取值范围内";
         }
 
         if (month == 2 && day == 28){

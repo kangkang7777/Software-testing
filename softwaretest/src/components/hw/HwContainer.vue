@@ -57,7 +57,7 @@
       getContent2(){
         Axios.get("/static/"+ this.method +".md")
           .then(response => {
-            this.content = response.data;
+            this.content2 = response.data;
             return response.data;
           })
           .catch(e => {

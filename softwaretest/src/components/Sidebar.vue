@@ -48,8 +48,7 @@
             name: "作业2",
             path: "hw2",
             children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
+              { name: "边界值法", path: "1" }
             ]
           },
           {

@@ -83,6 +83,17 @@ public class Sell {
                 continue;
             }
             Cell firstcell=row.getCell(0);
+            //System.out.println(firstcell.toString());
+            if(firstcell.toString().equals("语句覆盖"))
+                output.append("语句覆盖：\n");
+            if(firstcell.toString().equals("判断覆盖"))
+                output.append("判断覆盖：\n");
+            if(firstcell.toString().equals("条件覆盖"))
+                output.append("条件覆盖：\n");
+            if(firstcell.toString().equals("判定条件覆盖"))
+                output.append("判定条件覆盖：\n");
+            if(firstcell.toString().equals("条件组合覆盖"))
+                output.append("条件组合覆盖：\n");
             switch (firstcell.getCellType()){
                 case NUMERIC:
                     float ann=Float.parseFloat(row.getCell(1).toString());

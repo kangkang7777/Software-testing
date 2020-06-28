@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,22 @@ public class TestController {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    /*
+     * get方法
+     */
     @Test
     public void triangleTest() {
+        String response = restTemplate.getForObject( "http://localhost:8080/test/triangle/type1" , String.class );
+        System.out.println(response);
+    }
+
+
+    /*
+     * post方法 如若使用请修改参数
+     */
+    @Test
+    @Ignore
+    public void paramTest() {
         MultiValueMap<String, Integer> param = new LinkedMultiValueMap<>();
         param.add("a",2);
         param.add("b",3);

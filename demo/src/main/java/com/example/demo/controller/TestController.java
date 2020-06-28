@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.io.IOException;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
@@ -14,6 +15,9 @@ public class TestController {
 
     @Autowired
     private Sell sell;
+
+    @Autowired
+    private PhoneBill phoneBill;
 
 
     @Resource
@@ -47,5 +51,15 @@ public class TestController {
     @GetMapping(value = "/triangle/type2")
     public String testTriangle2() throws IOException {
         return fileReader.readTriangleFile2();
+    }
+
+    @GetMapping(value = "phonebill")
+    public String getPhoneBill() throws IOException {
+        return phoneBill.getAllBills();
+    }
+
+    @GetMapping(value = "phonebill_ec")
+    public String getPhoneBillByEc() throws IOException {
+        return phoneBill.getAllBillsByEc();
     }
 }

@@ -2,26 +2,38 @@ package com.example.demo.controller;
 
 import com.example.demo.service.Calendar;
 import com.example.demo.service.CheckTriangle;
+import com.example.demo.service.FileReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
-    @Autowired
-    private CheckTriangle checkTriangle;
+    @Resource
+    private FileReader fileReader;
 
-    @Autowired
-    private Calendar calendar;
 
-    @PostMapping(value = "/triangle")
-    public String checkTriangle(@RequestParam int a, @RequestParam int b, @RequestParam int c){
-        return checkTriangle.checkTriangle(a, b, c);
+    @GetMapping(value = "/date/type1")
+    public List<String> testNextDate1() throws IOException {
+        return fileReader.readNextDateFile1();
     }
 
-    @PostMapping(value = "/date")
-    public String getNextDate(@RequestParam int year, @RequestParam int month, @RequestParam int day){
-        return calendar.getNextDate(year, month, day);
+    @GetMapping(value = "/date/type2")
+    public List<String> testNextDate2() throws IOException {
+        return fileReader.readNextDateFile2();
     }
 
+    @GetMapping(value = "/triangle/type1")
+    public List<String> testTriangle1() throws IOException {
+        return fileReader.readTriangleFile1();
+    }
+
+    @GetMapping(value = "/triangle/type2")
+    public List<String> testTriangle2() throws IOException {
+        return fileReader.readTriangleFile2();
+    }
 }

@@ -40,8 +40,10 @@
             name: "作业1",
             path: "hw1",
             children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
+              { name: "三角形问题边界值法", path: "1" },
+              { name: "三角形问题等价类法", path: "2" },
+                { name: "万年历问题边界值法", path: "3" },
+                { name: "万年历问题等价类法", path: "4" },
             ]
           },
           {

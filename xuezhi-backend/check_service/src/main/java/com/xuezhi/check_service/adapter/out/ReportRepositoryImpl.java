@@ -2,6 +2,7 @@ package com.xuezhi.check_service.adapter.out;
 
 import com.xuezhi.check_service.domain.entity.Question;
 import com.xuezhi.check_service.domain.entity.Report;
+import com.xuezhi.check_service.domain.entity.User;
 import com.xuezhi.check_service.domain.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,9 @@ public class ReportRepositoryImpl implements ReportRepository {
     @Autowired
     private QARepositor qaRepositor;
 
+    @Autowired
+    private UserRepositor userRepositor;
+
     public boolean addReport(String type, String questionId, String authorId){
         Report report;
         if (type.equals("question")){
@@ -32,16 +36,18 @@ public class ReportRepositoryImpl implements ReportRepository {
             report = reportRepositor.findReportByQuestionIdAndAuthorId(questionId, authorId);
         }
         if (report == null){
-            Question temp = qaRepositor.findQuestionByQuestionId(questionId);
-            if((!type.equals("question") &&!type.equals("answer")|| temp == null|| authorId.equals("")))
+            Question qTemp = qaRepositor.findQuestionByQuestionId(questionId);
+            User uTemp = userRepositor.findUserById(authorId);
+            if((!type.equals("question") &&!type.equals("answer")|| qTemp == null|| uTemp == null))
                 return false;
             Report creport = new Report(type, questionId, authorId, 1);
             reportRepositor.save(creport);
             return true;
         }
         else {
-            Question temp = qaRepositor.findQuestionByQuestionId(questionId);
-            if((!type.equals("question") &&!type.equals("answer")|| temp == null|| authorId.equals("")))
+            Question qTemp = qaRepositor.findQuestionByQuestionId(questionId);
+            User uTemp = userRepositor.findUserById(authorId);
+            if((!type.equals("question") &&!type.equals("answer")|| qTemp == null|| uTemp == null))
                 return false;
             int count = report.getCount();
             report.setCount(++count);

@@ -74,10 +74,10 @@ class UserApplicationTests {
 
 
         //用户已有相同的follow的question的id
-        assertEquals(false, userRepository.addFollowListId("5ef89d5433e418418491ba50", "5ef99259e7c16d4b111c8f11"));
+        assertEquals(false, userRepository.addFollowListId("5ef89d5433e418418491ba50", "5ef9b44e72ab6ce120a39a75"));
 
         //合法输入
-        assertEquals(true, userRepository.addFollowListId("5ef89d5433e418418491ba50", "5ef9b44e72ab6ce120a39a75"));
+        assertEquals(true, userRepository.addFollowListId("5ef89d5433e418418491ba50", "5ef9b42872ab6ce120a39a74"));
     }
 
     @Test

@@ -224,7 +224,8 @@ public class UserRepositoryImpl implements UserRepository {
 
     public boolean addFollowListId(String id, String questionId){
         User user = userRepositor.findUserById(id);
-        if (user == null){
+
+        if (user == null || qaRepositor.findQuestionByQuestionId(questionId) == null){
             return false;
         }
         List<String> FollowList = user.getFollowList();

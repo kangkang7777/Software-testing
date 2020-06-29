@@ -82,12 +82,18 @@ public class QARepositoryImpl implements QARepository {
 
     public boolean updateQuestion(String questionId, String title, String description)
     {
+        if ((questionId=="")||(title=="")||(description=="")){
+            return false;
+        }
         try {
             int i = Integer.valueOf(questionId);
         }catch (Exception e){
             return false;
         }
         Question q = qaRepositor.findQuestionByQuestionId(questionId);
+        if (q == null){
+            return false;
+        }
         q.setTitle(title);
         q.setDescription(description);
         q.setUpdateTime(getUpdateTime());
@@ -102,7 +108,7 @@ public class QARepositoryImpl implements QARepository {
 
     public boolean addAnswer(String questionId, String authorId, String description)
     {
-        if (questionId==""||authorId==""||description==""){
+        if ((questionId=="")||(authorId=="")||(description=="")){
             return false;
         }
         try {
@@ -140,7 +146,7 @@ public class QARepositoryImpl implements QARepository {
 
     public boolean deleteAnswer(String questionId, String authorId)
     {
-        if (questionId==""||authorId==""){
+        if ((questionId=="")||(authorId=="")){
             return false;
         }
         try {

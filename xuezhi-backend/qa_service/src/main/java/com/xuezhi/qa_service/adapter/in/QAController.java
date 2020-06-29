@@ -27,9 +27,9 @@ public class QAController {
     }
 
     @PutMapping("/questions")
-    public void updateQuestion(@RequestParam String questionId,@RequestParam  String title,@RequestParam  String description)
+    public boolean updateQuestion(@RequestParam String questionId,@RequestParam  String title,@RequestParam  String description)
     {
-        qaApplication.updateQuestion(questionId, title, description);
+        return qaApplication.updateQuestion(questionId, title, description);
     }
 
     @DeleteMapping("/questions/{questionId}")

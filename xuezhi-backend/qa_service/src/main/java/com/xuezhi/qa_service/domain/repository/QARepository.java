@@ -20,7 +20,7 @@ public interface QARepository {
 
     void addQuestion(String title, String description, String askerId, String school);
 
-    void updateQuestion(String questionId, String title, String description);
+    boolean updateQuestion(String questionId, String title, String description);
 
     void deleteQuestion(String questionId);
 

@@ -4,10 +4,7 @@ import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Document(collection="user")
 public class User {
@@ -148,5 +145,24 @@ public class User {
 
     public void setQuestionIdList(List<String> questionIdList) {
         this.questionIdList = questionIdList;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj){
+            return true;
+        }
+        if (!( obj instanceof User)){
+            return false;
+        }
+        User user = (User) obj;
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getName(), user.getName()) && Objects.equals(getEmail(), user.getEmail())
+                && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getSex(), user.getSex()) && Objects.equals(getSignature(), user.getSignature())
+                && getAge() == user.getAge();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getEmail(), getPassword(), getSex(), getSignature(), getAge());
     }
 }

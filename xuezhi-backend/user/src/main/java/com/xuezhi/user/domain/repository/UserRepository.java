@@ -12,7 +12,7 @@ public interface UserRepository {
     void addUser(String email, String password);
 
     //修改或添加用户信息
-    void updateUser(String id, String name, int age, String sex, String signature);
+    boolean updateUser(String id, String name, int age, String sex, String signature);
 
 
     User getUserById(String id);
@@ -44,7 +44,7 @@ public interface UserRepository {
     List<String> getQuestionId(String id);
 
     //删除用户的一个回答的问题的id
-    void deleteQuestionId(String id, String questionId);
+    boolean deleteQuestionId(String id, String questionId);
 
     //添加用户关注的问题
     boolean addFollowListId(String id, String questionId);

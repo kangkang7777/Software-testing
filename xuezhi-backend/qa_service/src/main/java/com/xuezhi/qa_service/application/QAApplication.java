@@ -45,8 +45,8 @@ public class QAApplication {
         qaRepository.addQuestion(title, description, askerId, school);
     }
 
-    public void updateQuestion(String questionId, String title, String description){
-        qaRepository.updateQuestion(questionId, title, description);
+    public boolean updateQuestion(String questionId, String title, String description){
+        return qaRepository.updateQuestion(questionId, title, description);
     }
 
     public void deleteQuestion(String questionId){

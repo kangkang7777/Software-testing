@@ -77,13 +77,17 @@ public class QARepositoryImpl implements QARepository {
         qaRepositor.save(q);
     }
 
-    public void updateQuestion(String questionId, String title, String description)
+    public boolean updateQuestion(String questionId, String title, String description)
     {
         Question q = qaRepositor.findQuestionByQuestionId(questionId);
+        if (q == null){
+            return false;
+        }
         q.setTitle(title);
         q.setDescription(description);
         q.setUpdateTime(getUpdateTime());
         qaRepositor.save(q);
+        return true;
     }
 
     public void deleteQuestion(String questionId)

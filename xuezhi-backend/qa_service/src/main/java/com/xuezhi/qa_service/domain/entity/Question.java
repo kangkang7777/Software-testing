@@ -82,4 +82,14 @@ public class Question {
     public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof Question){
+            Question q = (Question) o;
+            return questionId.equals(q.getQuestionId());
+        }
+        return false;
+    }
+
 }

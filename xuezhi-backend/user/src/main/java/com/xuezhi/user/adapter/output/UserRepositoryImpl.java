@@ -1,6 +1,7 @@
 package com.xuezhi.user.adapter.output;
 
 import com.xuezhi.user.domain.entity.History;
+import com.xuezhi.user.domain.entity.Question;
 import com.xuezhi.user.domain.entity.User;
 import com.xuezhi.user.domain.repository.UserRepository;
 import org.bson.types.Binary;
@@ -19,6 +20,8 @@ import java.util.List;
 public class UserRepositoryImpl implements UserRepository {
     @Autowired
     private UserRepositor userRepositor;
+    @Autowired
+    private QARepositor qaRepositor;
 
     @Override
     public void addUser(String email, String password){
@@ -45,13 +48,20 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void updateUser(String id, String name, int age, String sex, String signature){
+    public boolean updateUser(String id, String name, int age, String sex, String signature){
         User user = userRepositor.findUserById(id);
+        if (user == null){
+            return false;
+        }
+        if (age <=0 || (!sex.equals("male") && !sex.equals("female") )){
+            return false;
+        }
         user.setName(name);
         user.setAge(age);
         user.setSex(sex);
         user.setSignature(signature);
         userRepositor.save(user);
+        return true;
     }
 
     @Override
@@ -191,22 +201,32 @@ public class UserRepositoryImpl implements UserRepository {
         return user.getQuestionIdList();
     }
 
-    public void deleteQuestionId(String id, String questionId){
+    public boolean deleteQuestionId(String id, String questionId){
         User user = userRepositor.findUserById(id);
+
+        if (user == null || qaRepositor.findQuestionByQuestionId(questionId) == null){
+            return false;
+        }
         List<String> questionIdList = user.getQuestionIdList();
+        if (questionIdList == null){
+            return false;
+        }
         for (String quesId : questionIdList){
             if (quesId.equals(questionId)){
                 questionIdList.remove(quesId);
                 user.setQuestionIdList(questionIdList);
                 userRepositor.save(user);
-                break;
+                return true;
             }
         }
-
+        return false;
     }
 
     public boolean addFollowListId(String id, String questionId){
         User user = userRepositor.findUserById(id);
+        if (user == null){
+            return false;
+        }
         List<String> FollowList = user.getFollowList();
         for(String each : FollowList)
             if(each.equals(questionId))

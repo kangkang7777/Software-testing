@@ -20,15 +20,15 @@ public interface QARepository {
 
     void addQuestion(String title, String description, String askerId, String school);
 
-    void updateQuestion(String questionId, String title, String description);
+    boolean updateQuestion(String questionId, String title, String description);
 
     void deleteQuestion(String questionId);
 
-    void addAnswer(String questionId, String authorId, String description);
+    boolean addAnswer(String questionId, String authorId, String description);
 
     void updateAnswer(String questionId, String authorId, String description);
 
-    void deleteAnswer(String questionId, String authorId);
+    boolean deleteAnswer(String questionId, String authorId);
 
     void updateLikes(String questionId, String authorId, String likeUserId);
     //添加评论

@@ -41,8 +41,8 @@ public class UserController {
 
     @PutMapping("/information")
     public boolean updateUser(@RequestParam String id, @RequestParam String name, @RequestParam int age, @RequestParam String sex, @RequestParam String signature){
-        usersApplication.updateUser(id, name, age, sex, signature);
-        return true;
+        return usersApplication.updateUser(id, name, age, sex, signature);
+        //return true;
     }
 
     @PostMapping("/avatar")
@@ -96,8 +96,8 @@ public class UserController {
     }
 
     @DeleteMapping("/questions")
-    public void deleteQuestionId(@RequestParam String id, @RequestParam String questionId){
-        usersApplication.deleteQuestionId(id, questionId);
+    public boolean deleteQuestionId(@RequestParam String id, @RequestParam String questionId){
+        return usersApplication.deleteQuestionId(id, questionId);
     }
 
     @PostMapping("/followList")

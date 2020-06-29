@@ -32,9 +32,9 @@ public class UsersApplication {
         return true;
     }
 
-    public void updateUser(String id, String name, int age, String sex, String signature){
+    public boolean updateUser(String id, String name, int age, String sex, String signature){
         //TODO
-        userRepository.updateUser(id, name, age, sex, signature);
+        return userRepository.updateUser(id, name, age, sex, signature);
     }
 
     public User getUserById(String id){
@@ -102,8 +102,9 @@ public class UsersApplication {
         return userRepository.getQuestionId(id);
     }
 
-    public void deleteQuestionId(String id, String questionId){
-        userRepository.deleteQuestionId(id, questionId);
+    public boolean deleteQuestionId(String id, String questionId){
+
+        return userRepository.deleteQuestionId(id, questionId);
     }
 
     public boolean addFollowListId(String id, String questionId){

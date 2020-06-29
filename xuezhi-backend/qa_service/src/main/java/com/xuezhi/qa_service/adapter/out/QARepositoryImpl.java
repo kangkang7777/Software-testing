@@ -4,6 +4,7 @@ import com.xuezhi.qa_service.domain.entity.Answer;
 import com.xuezhi.qa_service.domain.entity.Comment;
 import com.xuezhi.qa_service.domain.entity.Question;
 import com.xuezhi.qa_service.domain.repository.QARepository;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -11,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -36,6 +38,7 @@ public class QARepositoryImpl implements QARepository {
     }
 
     public List<Question> getQuestionByRegex(String regex,String school){
+        if(regex.equals("")||school.equals(""))return null;
         Query query = new Query(Criteria.where("title").regex(regex));
         List<Question> temp = mongoTemplate.find(query,Question.class,"question");
         if(school.equals("public"))
@@ -77,13 +80,19 @@ public class QARepositoryImpl implements QARepository {
         qaRepositor.save(q);
     }
 
-    public void updateQuestion(String questionId, String title, String description)
+    public boolean updateQuestion(String questionId, String title, String description)
     {
+        try {
+            int i = Integer.valueOf(questionId);
+        }catch (Exception e){
+            return false;
+        }
         Question q = qaRepositor.findQuestionByQuestionId(questionId);
         q.setTitle(title);
         q.setDescription(description);
         q.setUpdateTime(getUpdateTime());
         qaRepositor.save(q);
+        return true;
     }
 
     public void deleteQuestion(String questionId)
@@ -91,8 +100,17 @@ public class QARepositoryImpl implements QARepository {
         qaRepositor.deleteQuestionByQuestionId(questionId);
     }
 
-    public void addAnswer(String questionId, String authorId, String description)
+    public boolean addAnswer(String questionId, String authorId, String description)
     {
+        if (questionId==""||authorId==""||description==""){
+            return false;
+        }
+        try {
+            int i = Integer.valueOf(questionId);
+            int j = Integer.valueOf(authorId);
+        }catch (Exception e){
+            return false;
+        }
         Question question = qaRepositor.findQuestionByQuestionId(questionId);
         Answer answer = new Answer();
         answer.setAuthorId(authorId);
@@ -102,6 +120,7 @@ public class QARepositoryImpl implements QARepository {
         answerList.add(answer);
         question.setAnswerList(answerList);
         qaRepositor.save(question);
+        return true;
     }
 
     public void updateAnswer(String questionId, String authorId, String description)
@@ -119,8 +138,17 @@ public class QARepositoryImpl implements QARepository {
         }
     }
 
-    public void deleteAnswer(String questionId, String authorId)
+    public boolean deleteAnswer(String questionId, String authorId)
     {
+        if (questionId==""||authorId==""){
+            return false;
+        }
+        try {
+            int i = Integer.valueOf(questionId);
+            int j = Integer.valueOf(authorId);
+        }catch (Exception e){
+            return false;
+        }
         Question question = qaRepositor.findQuestionByQuestionId(questionId);
         List<Answer> answerList = question.getAnswerList();
         for (Answer answer : answerList){
@@ -131,6 +159,7 @@ public class QARepositoryImpl implements QARepository {
                 break;
             }
         }
+        return true;
     }
 
     public void updateLikes(String questionId, String authorId, String likeUserId){

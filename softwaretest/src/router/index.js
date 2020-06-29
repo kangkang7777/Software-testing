@@ -5,6 +5,7 @@ import Hw21 from "@/components/hw2/hw2-1"
 import Hw71 from "@/components/hw7/hw7-1"
 import Hw72 from "@/components/hw7/hw7-2"
 import Hw73 from "@/components/hw7/hw7-3"
+import Hw81 from "@/components/hw8/hw8-1"
 
 
 Vue.use(Router)
@@ -41,6 +42,16 @@ export default new Router({
             {
               path:'1',
               component: Hw21
+            }
+          ]
+        },
+        {
+          path: 'hw8',
+          component: Hw81,
+          children: [
+            {
+              path: '1',
+              component: Hw81
             }
           ]
         }

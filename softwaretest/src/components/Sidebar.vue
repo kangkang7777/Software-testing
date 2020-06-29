@@ -96,8 +96,7 @@
             name: "作业8",
             path: "hw8",
             children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
+              { name: "白盒测试", path: "1" }
             ]
           },
           {

@@ -47,7 +47,6 @@
         Axios.get("/static/"+ this.HwName +".md")
           .then(response => {
             this.content = response.data;
-            console.log(response.data)
             return response.data;
           })
           .catch(e => {

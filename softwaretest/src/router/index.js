@@ -38,49 +38,31 @@ export default new Router({
           component: Hw14,
         },
         {
-          path: 'hw7',
-          component: Hw71,
-          children:[
-            {
-              path:'1',
-              component: Hw71
-            },
-            {
-              path:'2',
-              component: Hw72
-            },
-            {
-              path:'3',
-              component: Hw73
-            }
-          ]
+          path: 'hw2/1',
+          component: Hw21
         },
         {
-          path: 'hw2',
-          component: Hw21,
-          children:[
-            {
-              path:'1',
-              component: Hw21
-            }
-          ]
+          path: 'hw7/1',
+          component: Hw71
         },
         {
-          path: 'hw8',
-          component: Hw81,
-          children: [
-            {
-              path: '1',
-              component: Hw81
-            }
-          ]
+          path: 'hw7/2',
+          component: Hw72
+        },
+        {
+          path: 'hw7/3',
+          component: Hw73
+        },
+        {
+          path: 'hw8/1',
+          component: Hw81
         }
       ]
 
     },
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/home/hw1/1',
     }
 
   ]

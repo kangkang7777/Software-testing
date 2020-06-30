@@ -1,5 +1,5 @@
 <template>
-  <HwContainer hw-name="hw7"/>
+  <HwContainer hw-name="hw7" method="7-2" api="http://localhost:8080/test/phonebill_ec"/>
 </template>
 
 <script>

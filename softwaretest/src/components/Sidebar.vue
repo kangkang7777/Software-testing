@@ -54,38 +54,6 @@
             ]
           },
           {
-            name: "作业3",
-            path: "hw3",
-            children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
-            ]
-          },
-          {
-            name: "作业4",
-            path: "hw4",
-            children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
-            ]
-          },
-          {
-            name: "作业5",
-            path: "hw5",
-            children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
-            ]
-          },
-          {
-            name: "作业6",
-            path: "hw6",
-            children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
-            ]
-          },
-          {
             name: "作业7",
             path:"hw7",
             children: [
@@ -99,14 +67,6 @@
             path: "hw8",
             children: [
               { name: "白盒测试", path: "1" }
-            ]
-          },
-          {
-            name: "作业9",
-            path: "hw9",
-            children: [
-              { name: "实验介绍", path: "intro" },
-              { name: "实验一：系统命令执行", path: "lab1" }
             ]
           }
         ]

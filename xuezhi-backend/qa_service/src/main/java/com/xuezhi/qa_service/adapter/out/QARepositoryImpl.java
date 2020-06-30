@@ -118,6 +118,9 @@ public class QARepositoryImpl implements QARepository {
             return false;
         }
         Question question = qaRepositor.findQuestionByQuestionId(questionId);
+        if (question==null){
+            return false;
+        }
         Answer answer = new Answer();
         answer.setAuthorId(authorId);
         answer.setDescription(description);
@@ -156,6 +159,9 @@ public class QARepositoryImpl implements QARepository {
             return false;
         }
         Question question = qaRepositor.findQuestionByQuestionId(questionId);
+        if (question==null){
+            return false;
+        }
         List<Answer> answerList = question.getAnswerList();
         for (Answer answer : answerList){
             if (answer.getAuthorId().equals(authorId)){

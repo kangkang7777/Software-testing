@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class UsersApplication {
@@ -48,6 +50,12 @@ public class UsersApplication {
     public String checkAndSendMail(String email) throws IOException {
         if(userRepository.getUserByEmail(email)==null) {
             String temp;
+            String regEx1 = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            Pattern pattern = Pattern.compile(regEx1);
+            Matcher matcher = pattern.matcher(email);
+            if (!matcher.matches()){
+                return "非法邮箱";
+            }
             URL restURL = new URL("http://localhost:8083/checkcode/" + email);
             HttpURLConnection conn = (HttpURLConnection)restURL.openConnection();
             conn.setRequestMethod("GET"); // POST GET PUT DELETE
